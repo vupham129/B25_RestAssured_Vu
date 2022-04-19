@@ -21,6 +21,7 @@ public class SimpleGetRequest {
         //print response body
         response.prettyPrint();
 
+        //verify status code is 200
         Assertions.assertEquals(200, response.statusCode());
 
 
