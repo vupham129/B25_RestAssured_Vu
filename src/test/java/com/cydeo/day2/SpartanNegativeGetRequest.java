@@ -3,10 +3,12 @@ package com.cydeo.day2;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import static io.restassured.RestAssured.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class SpartanNegativeGetRequest {
     //beforeall is the same thing with beforeClass in testng
@@ -25,8 +27,7 @@ public class SpartanNegativeGetRequest {
     @Test
     public void test1(){
 
-        Response response = RestAssured.
-                given()
+        Response response = given()
                 .accept(ContentType.JSON)
                 .when()
                 .get( "/api/spartans");
@@ -38,10 +39,10 @@ public class SpartanNegativeGetRequest {
 
         //how to test API?
         // verify status code is 200
-        Assertions.assertEquals(200, response.statusCode());
+        assertEquals(200, response.statusCode());
 
         // verify content type is application/json
-        Assertions.assertEquals("application/json", response.contentType());
+        assertEquals("application/json", response.contentType());
 
     }
 
@@ -57,13 +58,13 @@ public class SpartanNegativeGetRequest {
     @Test
     public void test2(){
 
-        Response response = RestAssured.given().accept(ContentType.XML).when().get("/api/spartans/10") ;
+        Response response =given().accept(ContentType.XML).when().get("/api/spartans/10") ;
 
         // verify status code 406
-        Assertions.assertEquals(406, response.statusCode());
+        assertEquals(406, response.statusCode());
 
         // verify content type must be
-        Assertions.assertEquals("application/xml;charset=UTF-8", response.contentType());
+        assertEquals("application/xml;charset=UTF-8", response.contentType());
 
     }
 
