@@ -59,6 +59,7 @@ public class HRApiWithPath extends HRTestBase {
 
         Response response = given().queryParam("q", "{\"job_id\":\"IT_PROG\"}").when().get("/employees");
 
+        assertEquals(200,response.statusCode());
         List<String> job_ids = response.path("items.job_id");
 
         System.out.println("job_ids = " + job_ids);
