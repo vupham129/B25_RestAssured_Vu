@@ -19,9 +19,11 @@ public class SpartanAPIvsDB extends SpartanTestBase {
     @Test
     public void test1(){
 
+        int idSpartan = 15;
+
         Response response = given().
                     accept(ContentType.JSON)
-                    .pathParam("id",15)
+                    .pathParam("id",idSpartan)
                 .when()
                     .get("/api/spartans/{id}")
                 .then()
@@ -38,13 +40,17 @@ public class SpartanAPIvsDB extends SpartanTestBase {
         //we need connection String of spartan DB
         String query = "SELECT SPARTAN_ID,NAME,GENDER,PHONE\n" +
                 "from SPARTANS\n" +
-                "where SPARTAN_ID = 15";
+                "where SPARTAN_ID ="+ idSpartan;
         Map<String, Object> dbMap = DBUtils.getRowMap(query);
 
         System.out.println("dbMap = " + dbMap);
 
 
         //compare api vs db
+        assertThat(apiMap.get("id").toString(), is(dbMap.get("SPARTAN_ID").toString()));
+        assertThat(apiMap.get("name"), is(dbMap.get("NAME")));
+        assertThat(apiMap.get("gender"), is(dbMap.get("GENDER")));
+        assertThat(apiMap.get("phone").toString(), is(dbMap.get("PHONE").toString()));
 
 
     }
