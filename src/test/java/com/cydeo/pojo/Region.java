@@ -1,0 +1,18 @@
+package com.cydeo.pojo;
+
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+import java.util.List;
+
+@Getter // from lombok dependency
+@Setter
+@ToString
+public class Region {
+    private int region_id;
+    private String region_name;
+    private List<Link> links;
+
+
+}
