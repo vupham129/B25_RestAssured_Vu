@@ -170,6 +170,7 @@ public class SpartanPostRequestDemo extends SpartanTestBase {
                 .statusCode(200)
                 .extract().response().as(Spartan.class);
 
+       //verify names are matching
        assertThat(spartanGet.getName(),is(spartanPost.getName()));
 
 
